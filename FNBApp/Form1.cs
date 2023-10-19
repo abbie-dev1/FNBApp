@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,7 +72,24 @@ namespace FNBApp
 
         private void btnSum3Num_Click(object sender, EventArgs e)
         {
+            int num1, num2, num3, sum;
 
+            //Assign values
+            num1 = Convert.ToInt32(txtNum1.Text);
+            num2 = Convert.ToInt32(txtNum2.Text);
+            num3 = Convert.ToInt32(txtNum3.Text);
+
+            //Object to child
+            CalculateSum obj = new CalculateSum (num1, num2, num3); 
+
+            sum = obj.calculateThreeNum();
+
+            lblResult.Text = sum.ToString();
+
+            string path = @"E:\Banking\info.txt";
+            string data = num1 + " " + num2 + " " + num3 + " " + sum;
+
+            obj.writeToFile(path, data);
         }
 
         private void btnWriteToFile_Click(object sender, EventArgs e)
