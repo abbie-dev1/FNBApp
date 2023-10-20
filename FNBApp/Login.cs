@@ -56,6 +56,7 @@ namespace FNBApp
             }
             else
             {
+                //MessageBox.Show("User does not exist");
                 MessageBox.Show("Enter valid email or password");
             }
         }
