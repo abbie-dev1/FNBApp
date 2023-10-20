@@ -29,6 +29,7 @@ namespace FNBApp
         public void writeToFile(string path, string data)
         {
             path = @"E:\Banking\info.txt";
+
             data = num1 + " " + num2 + " " + num3 + " " + calculateThreeNum();
             File.AppendAllText(path, data + "\n");
         }

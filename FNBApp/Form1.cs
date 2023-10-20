@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -94,6 +95,28 @@ namespace FNBApp
 
         private void btnWriteToFile_Click(object sender, EventArgs e)
         {
+            //Database connect
+            //DB location
+            string db = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Banking;Integrated Security=True";
+
+            //Connect and open the database
+            SqlConnection connect = new SqlConnection(db);
+            connect.Open();
+
+            //Query database table
+            string query = "Insert into info values(@Acc1, @Acc2, @Acc3, @TotalAccounts)";
+
+            //Values to enter from the form
+            SqlCommand command = new SqlCommand(query, connect);
+            command.Parameters.AddWithValue("@Acc1", txtNum1.Text);
+            command.Parameters.AddWithValue("@Acc2", txtNum2.Text);
+            command.Parameters.AddWithValue("@Acc3", txtNum3.Text);
+            command.Parameters.AddWithValue("@TotalAccounts", lblResult.Text);
+
+            //Execute the query
+
+            int x = command.ExecuteNonQuery();
+            MessageBox.Show(x + " Row(s) inserted!");
 
         }
     }
